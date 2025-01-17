@@ -1,0 +1,673 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+:root {
+    --text-color: #f5f5f5;
+    --hover-color: #ff0217;
+    --bg-color: #250821;
+    --secon-bg-color:#143764;
+    --big-font: 2.5rem;
+    --normal-font:2rem;
+    --neon-box-shadow: 0 0 .5rem #ff4112;
+    --h2-font: 3rem;
+    --font-neon-text-shadow: 0 0 10px rgba(18, 247, 255, 0.3),
+        0 0 20px rgba(18, 247, 255, 0.3),
+        0 0 30px rgba(18, 247, 255, 0.3),
+        0 0 40px rgba(18, 247, 255, 0.3),
+        0 0 70px rgba(18, 247, 255, 0.3),
+        0 0 80px rgba(18, 247, 255, 0.3),
+        0 0 100px rgba(18, 247, 255, 0.3),
+        0 0 150px rgba(18, 247, 255, 0.3);
+}
+h1.sub-title {
+    text-align: center;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: #080808;
+    color: #fff;
+    padding-top: 41px;
+    
+}
+#header {
+    position: relative;
+    height: 140vh;
+    width: 100%;
+    background-image: url(Images/bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.container {
+    padding: 10px 10%;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #262626; 
+    z-index: 100; 
+
+}
+.logo {
+    width: 40px;
+    position: relative;
+    left: 15px;
+}
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+nav ul li a {
+    color: #f4f5f1;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.skills {
+    background: var(--secon-bg-color);
+    padding: 50px 10%;
+}
+.skill-main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 30px;
+    grid-column-gap: 50px;
+}
+.skill-bar {
+    margin-bottom: 2.3rem;
+}
+.skill-main h3 {
+    margin-bottom: 2rem;
+    font-size: var(--normal-font);
+    text-align: center;
+}
+.skill-left .skill-bar .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+.skill-left .skill-bar .bar {
+    width: 100%;
+    height: 10px;
+    background-color: var(--bg-color);
+    margin-top: 10px;
+    position: relative;
+}
+.skill-bar .bar span {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background: var(--hover-color);
+    border-radius: 25px;
+    box-shadow: var(--neon-box-shadow);
+}
+.skill-bar .bar .python{
+    width: 80%;
+    animation: python 3s;
+}
+.skill-bar .bar .html{
+    width: 80%;
+    animation: html 3s;
+}
+.skill-bar .bar .figma{
+    width: 75%;
+    animation: figma 3.5s;
+}
+.skill-bar .bar .java{
+    width: 70%;
+    animation: java 3.7s;
+}
+.skill-bar .bar .css{
+    width: 70%;
+    animation: css 3.7s;
+}
+.skill-bar .bar .javascript{
+    width: 60%;
+    animation: javascript 4.3s;
+}
+.skill-bar .bar .ccna{
+    width:55%;
+    animation: ccna 4.5s;
+}
+
+/*---------------Skill right----------------------------------*/
+.professional {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.box {
+    position: relative;
+    margin: 10px 0;
+    flex: 1 1 15rem;
+}
+
+.box .text {
+    text-align: center;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.box .text big {
+    font-weight: 400;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box .text small {
+    display: block;
+    font-weight: 600;
+}
+
+.circle {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
+    position: relative;
+}
+
+.circle .points {
+    width: 2px;
+    height: 10px;
+    background-color:#250821;
+    position: absolute;
+    border-radius: 3px;
+    transform: rotate(calc(var(--i) * var(--rot))) translateY(-45px);
+    animation: glow s linear forwards;
+    animation-delay: calc(var(--i) * 0.05s);
+}
+
+.points.marked {
+    animation: glow 0.04s linear forwards;
+    animation-delay: calc(var(--i) * 0.05s);
+}
+
+.header-text {
+    margin-top: 20%;
+    font-size: 30px;
+}
+.header-text h1 {
+    font-size: 60px;
+    margin-top: 20px;
+}
+.header-text h1 span {
+    color: #ff004f;
+}
+#about {
+    padding: 80px 0;
+    color: #ababab;
+}
+.row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.about-col-1 {
+    flex-basis: 35%;
+}
+.about-col-1 img {
+    width: 100%;
+    border-radius: 15px;
+}
+.about-col-2 {
+    flex-basis: 60%;
+}
+.sub-title {
+    font-size: 60px;
+    font-weight: 600;
+    color: #fff;
+}
+.tab-titles {
+    display: flex;
+    margin: 20px 0 40px;
+}
+.tab-links {
+    margin: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+.tab-links::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.05s;
+}
+.tab-links.active-link::after {
+    width: 100%;
+}
+.tab-contents ul li {
+    list-style: none;
+    margin: 10px 0;
+}
+.tab-contents li span {
+    color: #15c04e;
+    font-size: 14px;
+}
+.tab-contents {
+    display: none;
+}
+.tab-contents.active-tab {
+    display: block;
+}
+#services {
+    padding: 30px 0;
+}
+.services-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.services-list div {
+    background-color: #262626;
+    padding: 40px;
+    font-size: 13px;
+    font-weight: 300;
+    border-radius: 10px;
+    transition: background 0.5s, transform 0.5s;
+}
+.services-list div i {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+.services-list div h2 {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+.services-list div a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
+    margin-top: inline-block;
+}
+.services-list div:hover {
+    background-color: #ff004f;
+    transform: translateY(-10px);
+}
+#Portfolio {
+    padding: 50px 0;
+}
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 40px;
+    margin-top: 50px;
+}
+.work {
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.work img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+}
+.layer {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), #ff004f);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    font-size: 14px;
+    transition: height 0.5s;
+}
+.layer h3 {
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.layer a {
+    margin-top: 20px;
+    color: #ff004f;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 60px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+}
+.work:hover img {
+    transform: scale(1.2);
+}
+.work:hover .layer {
+    height: 100%;
+    align-items: center;
+}
+.btn {
+    display: block;
+    padding: 14px 50px;
+    margin: 50px auto;
+    width: fit-content;
+    border: 1px solid #ff004f;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.5s;
+}
+.btn:hover {
+    background: #ff004f;
+}
+.contact-left {
+    flex-basis: 35%;
+}
+.contact-right {
+    flex-basis: 60%;
+}
+.contact-left p {
+    margin-top: 30px;
+}
+.contact-left p i {
+    color: #ff004f;
+    margin-right: 15px;
+    font-size: 25px;
+}
+.social-icons {
+    margin-top: 30px;
+}
+.social-icons a {
+    text-decoration: none;
+    font-size: 40px;
+    margin-right: 20px;
+    margin-top: 30px;
+    color: #ababab;
+    display: inline-block;
+    transition: transform 0.5s;
+}
+.social-icons a:hover {
+    color: #ff004f;
+    transform: translateY(-8px);
+}
+.btn.btn2 {
+    display: inline-block;
+    background: #ff004f;
+}
+.contact-right form {
+    width: 100%;
+}
+form input, form textarea {
+    width: 100%;
+    border: 0;
+    outline: none;
+    background: #262626;
+    margin: 15px 0;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 10px;
+}
+form textarea{
+    resize: none;
+} 
+form button {
+    width: 45%;
+    border: 0;
+    outline: none;
+    background: #ff004f;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.5s;
+    justify-content: center;
+    align-items: center;
+}
+form button:hover {
+    background: #e6003e;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.copyright {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
+    color: #fff;
+    position: relative;
+}
+.logo {
+    filter: invert(29%) sepia(94%) saturate(5917%) hue-rotate(358deg) brightness(101%) contrast(116%);
+}
+nav .fa-xmark {
+    display: none;
+}
+nav .fa-bars {
+    display: none;
+}
+#msg {
+    color: #c70606;
+    margin-top: 10px;
+    display: block;
+}
+#about,
+#contact{
+    
+    background-color: #143764;
+}
+#portfolio,
+#services{
+    background-color: #254670;
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .skill-main {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #header {
+        background-image: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+    .fa-solid.fa-bars {
+        position: relative;
+        left: -20px;
+    }
+    
+    .header-text {
+        margin-top: 100%;
+        font-size: 16px;
+    }
+    .header-text h1 {
+        font-size: 30px;
+    }
+    nav .fa-xmark {
+        display: block;
+        font-size: 25px;
+    }
+    nav .fa-bars {
+        display: block;
+        font-size: 25px;
+        
+    }
+    nav ul {
+        background: #ff004f;
+        position: fixed;
+        top: 0;
+        right: -150px;
+        width: 150px;
+        height: 50%;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.3s ease;
+    }
+    nav ul li {
+        display: block;
+        margin: 25px;
+    }
+    nav ul .fa-bars {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+    nav ul .fa-xmark {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+    .sub-title {
+        font-size: 40px;
+    }
+    .about-col-1, .about-col-2 {
+        flex-basis: 100%;
+    }
+    .about-col-1 {
+        margin-bottom: 20px;
+    }
+    .about-col-2 {
+        font-size: 14px;
+    }
+    .tab-links {
+        font-size: 16px;
+        margin-right: -20px;
+    }
+    .contact-left, .contact-right {
+        flex-basis: 100%;
+    }
+    .about-col-1 img {
+        width: 250px;
+        height: 100%;
+        border-radius: 15px;
+    }
+    .skills {
+        padding: 30px 5%;
+    }
+}
+@keyframes html {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80%;
+    }
+}
+
+@keyframes figma {
+    from {
+        width: 0;
+    }
+    to {
+        width: 75%;
+    }
+}
+
+@keyframes css {
+    from {
+        width: 0;
+    }
+    to {
+        width: 70%;
+    }
+}
+@keyframes java{
+    from {
+        width: 0;
+    }
+    to {
+        width: 70%;
+    }
+}
+@keyframes ccna{
+    from {
+        width: 0;
+    }
+    to {
+        width: 55%;
+    }
+}
+
+@keyframes javascript {
+    from {
+        width: 0;
+    }
+    to {
+        width: 60%;
+    }
+}
+
+@keyframes python {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80%;
+    }
+}
+@keyframes glow {
+    0% {
+        background: #250821; 
+        box-shadow: none;
+    }
+    100% {
+        background: #ff0217;
+        box-shadow: 0 0 .5rem #ff4112;      
+    }
+}
+
+/*---------------------*/
