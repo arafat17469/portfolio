@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Project </title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #2a2a72;
+            --accent-color: #ff6f61;
+            --background: #121212;
+            --text-color: #ffffff;
+            --hover-color: #3a3a3a;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --card-bg: #1e1e1e;
+            --gradient: linear-gradient(135deg, #2a2a72 0%, #009ffd 100%);
+        }
+
+        body {
+            background: rgb(31, 48, 82);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Top Navigation */
+        .top-navbar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--card-bg);
+            z-index: 1000;
+            padding: 0.02rem 0.02rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-navbar ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .top-navbar .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top-navbar .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .top-navbar .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .top-navbar .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .menu-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: block;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+            border: none;
+            font-size: 1.4rem;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.05) rotate(90deg);
+        }
+
+        /* Side Navigation */
+        nav {
+            background: var(--card-bg);
+            padding: 2rem;
+            height: 100vh;
+            width: 300px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 5px 0 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav.active {
+            transform: translateX(0);
+        }
+
+        .nav-list {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 1.25rem;
+            display: block;
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            transition: all 0.03s ease;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 0;
+            background: var(--accent-color);
+            border-radius: 2px;
+            transition: height 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            height: 60%;
+        }
+
+        .nav-link.active {
+            background: rgba(255, 111, 97, 0.1);
+            color: var(--accent-color);
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 999;
+        }
+
+        /* Projects Grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem;
+            margin-top: 90px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .project-card {
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background-color: var(--card-bg);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            z-index: 1;
+        }
+
+        .project-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .project-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 111, 97, 0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+
+        /* Responsive Design */
+        @media (min-width: 1024px) {
+            .projects-container {
+                padding: 3rem;
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .menu-btn {
+                display: none;
+            }
+
+            .top-navbar {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-navbar {
+                display: none;
+            }
+
+            .menu-btn {
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                width: 80%;
+            }
+
+            .projects-container {
+                margin-top: 30px;
+                padding: 1.5rem;
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-height: 350px;
+                padding: 2rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-btn {
+                padding: 10px 15px;
+                font-size: 1.2rem;
+            }
+
+            nav {
+                width: 85%;
+                padding: 1.5rem;
+            }
+
+            .nav-link {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .projects-container {
+                padding: 1rem;
+            }
+
+            .project-card {
+                min-height: 300px;
+                padding: 1.5rem;
+            }
+
+            .project-links a {
+                padding: 0.7rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-card {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .hidden {
+            opacity: 0;
+            visibility: hidden;
+            height: 0;
+            padding: 0;
+            margin: 0;
+            transition: all 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link active" data-category="all">All Project</a></li>
+            <li><a href="#" class="nav-link" data-category="ml">Machine Learning</a></li>
+            <li><a href="#" class="nav-link" data-category="ai">AI</a></li>
+            <li><a href="#" class="nav-link" data-category="cyber">Cybersecurity</a></li>
+            <li><a href="#" class="nav-link" data-category="web">Web </a></li>
+            <li><a href="#" class="nav-link" data-category="software">Software </a></li>
+            <li><a href="#" class="nav-link" data-category="android">Android </a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu -->
+    <button class="menu-btn">☰</button>
+    <div class="overlay"></div>
+
+    <!-- Side Navigation -->
+    <nav>
+        <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link active" data-category="all">All Project</a></li>
+            <li><a href="#" class="nav-link" data-category="ml">Machine Learning</a></li>
+            <li><a href="#" class="nav-link" data-category="ai">AI</a></li>
+            <li><a href="#" class="nav-link" data-category="cyber">Cybersecurity</a></li>
+            <li><a href="#" class="nav-link" data-category="web">Web Dev</a></li>
+            <li><a href="#" class="nav-link" data-category="software">Software Dev</a></li>
+            <li><a href="#" class="nav-link" data-category="android">Android Dev</a></li>
+        </ul>
+    </nav>
+
+    <!-- Projects Grid -->
+    <div class="projects-container">
+        <!-- ML app Development Projects -->
+        <div class="project-card" data-category="ml" style="background-image: url('Images/ML_Bangla.png')">
+            <h3 >Bengali language spam detection System</h3>
+            <div class="project-links">
+                <a href="https://www.linkedin.com/posts/arafat1746_machinelearning-naturallanguageprocessing-activity-7287508917012611073-A8Ne?utm_source=share&utm_medium=member_desktop&rcm=ACoAAECrNDoBqt0IespxTDt1aDp4cWernsIDL3Y"><i class="fas fa-external-link-alt"></i> LinkedIn</a>
+                <a href="https://github.com/arafat-rahman17/CodeSoft/tree/main/Bengali%20language%20spam%20detection%20System"><i class="fas fa-user-tie"></i> Github</a>
+                <a href="https://www.kaggle.com/code/arafat1746/bengali-language-spam-detection-system"><i class="fas fa-cogs"></i> Kaggle</a>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="ml" style="background-image: url('Images/Spam.png')">
+            <h3 >Spam SMS Detection</h3>
+            <div class="project-links">
+                <a href="https://www.linkedin.com/posts/arafat1746_machinelearning-datascience-spamdetection-activity-7285845216387899395-pDKI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAECrNDoBqt0IespxTDt1aDp4cWernsIDL3Y"><i class="fas fa-external-link-alt"></i> LinkedIn</a>
+                <a href="https://github.com/arafat-rahman17/CodeSoft/tree/main/SPAM%20SMS%20DETECTION"><i class="fas fa-user-tie"></i> Github</a>
+                <a href="https://www.kaggle.com/code/arafat1746/spam-sms-detection"><i class="fas fa-cogs"></i> Kaggle</a>
+            </div>
+        </div>
+
+
+        <!-- Web Development Projects -->
+        <div class="project-card" data-category="web" style="background-image: url('https://arafat-portfolio-ar.netlify.app/Images/ar1.jpeg')">
+            <h3>Portfolio Website</h3>
+            <div class="project-links">
+                <a href="https://arafat-portfolio-ar.netlify.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                <a href="https://github.com/arafat-rahman17/My_portfolio_website"><i class="fas fa-user-tie"></i> Github</a>
+                <a href="https://arafat-portfolio-ar.netlify.app/#services"><i class="fas fa-cogs"></i> Service</a>
+            </div>
+        </div>
+        <div class="project-card" data-category="web" style="background-image: url('Images/Class.png')">
+            <h3>Class Room website</h3>
+            <div class="project-links">
+                <a href="https://class-room-k927ulry8-arafat-rahmans-projects-ad442399.vercel.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                <a href="https://github.com/arafat-rahman17/Class_Room"><i class="fas fa-user-tie"></i> Github</a>
+            </div>
+        </div>
+
+        <!-- Software Development Projects -->
+        <div class="project-card" data-category="software" style="background-image: url('Images/Nid.png')">
+            <h3>Secure NID  Management System</h3>
+            <div class="project-links">
+                <a href="https://github.com/arafat-rahman17/Secure-NID-Management-System"><i class="fas fa-external-link-alt"></i> Github</a>
+            </div>
+        </div>
+        <!-- android app Development Projects -->
+        <div class="project-card" data-category="android" style="background-image: url('Images/LY.png')">
+            <h3>Library Management System</h3>
+            <div class="project-links">
+                <a href="https://github.com/arafat-rahman17/Android-App/blob/main/PUB.zip"><i class="fas fa-external-link-alt"></i> Github</a>
+            </div>
+        </div>
+
+
+        <!-- Add other project cards similarly -->
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('.menu-btn');
+    const nav = document.querySelector('nav');
+    const overlay = document.querySelector('.overlay');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const projects = document.querySelectorAll('.project-card');
+
+    // Mobile Menu Toggle
+    menuBtn.addEventListener('click', () => {
+        nav.classList.add('active');
+        overlay.style.display = 'block';
+    });
+
+    // Close Menu
+    overlay.addEventListener('click', () => {
+        nav.classList.remove('active');
+        overlay.style.display = 'none';
+    });
+
+    // Project Filtering
+    const filterProjects = (category) => {
+        let orderedProjects = []; // Array to store ordered projects
+        let otherProjects = []; // Array to store other projects
+
+        projects.forEach(project => {
+            const projectCategory = project.dataset.category;
+            
+            // If the category matches, we prioritize it
+            if (category === 'all' || projectCategory === category) {
+                orderedProjects.push(project);
+            } else {
+                otherProjects.push(project);
+            }
+        });
+
+        // Hide all projects initially with fade-out transition
+        projects.forEach(project => {
+            project.classList.add('fade-out');
+        });
+
+        // After a short delay (for fade-out transition), reorder and show projects
+        setTimeout(() => {
+            // Combine the two arrays: selected category projects come first
+            const allProjects = [...orderedProjects, ...otherProjects];
+
+            // Reset the display order and opacity
+            allProjects.forEach((project, index) => {
+                project.classList.remove('hidden', 'fade-out');
+                project.style.order = index;  // Adjust the order dynamically
+            });
+
+            // Hide projects not in the selected category
+            otherProjects.forEach(project => {
+                project.classList.add('hidden');
+            });
+        }, 0.00003);  // Adjust delay time according to your transition duration
+    };
+
+    // Navigation Handling
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            link.classList.add('active');
+            filterProjects(link.dataset.category);
+            
+            // Close the menu on mobile when a link is clicked
+            if (window.innerWidth <= 768) {
+                nav.classList.remove('active');
+                overlay.style.display = 'none';
+            }
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
