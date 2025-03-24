@@ -60,5 +60,4 @@ Professional portfolio showcasing 3+ years of experience in full-stack developme
 🧑💻 Undergraduate in Computer Science @ Pundra University
 📍 Based in Bogura, Bangladesh
 💼 3+ Years Professional Experience
-🔐 Top 5% Bugcrowd Researcher
 🤖 AI Development Specialist
